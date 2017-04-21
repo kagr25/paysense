@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   # Example of regular route:
     delete '/posts/:id' => 'post#delete'
-    delete '/posts_delete_all' => 'post#delete_all'
+    delete '/post/delete_all' => 'post#delete_all'
     post '/posts' => 'post#create'
     get '/posts' => 'post#index'
 

@@ -1,28 +1,30 @@
+# api_with_sepc_rails
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+== INSTRUCTION
 
-Things you may want to cover:
+Things you need to know for this application :
 
-* Ruby version
+#### Install Ruby
 
-* System dependencies
+    $ brew install/upgrade rbenv
+    $ brew install/upgrade ruby-build
+    $ rbenv install 2.1.2
 
-* Configuration
+    # If you are using rvm
+    $ rvm install 2.1.2
+    $ rvm use 2.1.2
 
-* Database creation
+#### Setting Up Database
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    $ rake db:create
+    $ rake db:migrate
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* rails version 4.2.6
+
+* rails s ( to start server)
+
+* Create token : AccessToken.create(token: '12345', ip: '172.31.2.21')
+
+* Frontend in the Backbone

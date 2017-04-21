@@ -1,34 +1,32 @@
-class PostController < ApplicationController
+class PostController < ApiController
 
-  # respond_to :json
+  before_action :verify_token, only: [:delete, :delete_all]
 
   def index
-    # binding.pry
-    render json: Post.all, status: :ok
+    render json: Post.all.collect{|post| post.to_hash}, status: :ok
   end
 
-  # def get_posts
-  #   @posts = Post.all
-  #   render json: {posts: @posts}, status: :ok
-  # end
-
   def create
-    binding.pry
-    # respond_with Post.create(message: params[:message], ip: remote.ip)
-    render json: {post: Post.create(message: params[:message], ip: request.remote_ip)}, status: :ok
+    ensure_params(:message) and return
+    render json: Post.create!(message: params[:message], ip: request.remote_ip).to_hash, status: :ok
   end
 
   def delete
-    respond_with Post.destory(params[:id])
-    #binding.pry
-    #if AccessToken.find_by(token: params[:token])
-    # @post = post.find(params[:id])
-    # @post.update_attributes status: :deleted
-    # render json: {posts: Post.all}, status: :ok
+    ensure_params(:id) and return
+    post = Post.find(params[:id])
+    post.update_attributes!(status: 'deleted')
+    render json: {message: 'Successfully Deleted!!!'}, status: :ok
   end
 
   def delete_all
-    binding.pry
+    Post.update_all(status: 1)
+    render json: {message: 'All Post Deleted Successfully!!!'}, status: :ok
+  end
+
+  private
+  def verify_token
+    ensure_params(:token) and return
+    render_api_error(15, 401, 'invalid access' , "You enter the invalid token: #{params[:token]}.") if AccessToken.find_by_token(params[:token]).nil?
   end
 
 end

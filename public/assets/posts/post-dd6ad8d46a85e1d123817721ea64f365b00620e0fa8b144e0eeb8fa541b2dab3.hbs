@@ -1,0 +1,30 @@
+<div class="row">
+<div class="col-md-4">
+  <h5>
+    By: {{this.ip}}  - <span>{{this.created_at}} </span>
+      <button class='btn btn-primary pull-right' data-target='.myModal'>Delete</button>
+  </h5>
+  <p>
+    {{this.message}}
+  </p>
+</div>
+</div>
+
+<div id="myModal" class="myModal modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        Hello
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="button btn-default import-plan-confirm" data-dismiss="modal">Confirm</button>
+      </div>
+    </div>
+
+  </div>
+</div>
